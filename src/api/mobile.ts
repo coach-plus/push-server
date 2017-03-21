@@ -17,12 +17,8 @@ export class MobileApi {
     }
 
     sendNotifications(req: express.Request, res: express.Response) {
-
+        res.status(200).send({})
         let pushRequest: IPushRequest = req.body
-
         this.apns.sendNotification(pushRequest)
-
-        res.send({})
-
     }
 }
