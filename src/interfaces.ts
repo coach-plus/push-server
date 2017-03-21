@@ -5,7 +5,7 @@ export interface IDevice {
 }
 
 export interface IPushRequest {
-    device: IDevice[]
+    devices: IDevice[]
     title: string
     content: string
 }
