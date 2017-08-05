@@ -1,7 +1,7 @@
 import { Config } from './config'
 import { Logger } from './logger'
 import { inject, injectable } from 'inversify'
-import { Provider, Notification, ProviderOptions } from 'apn'
+import { Provider, Notification, ProviderOptions, NotificationAlertOptions } from 'apn'
 import { IPushRequest } from "./interfaces"
 
 
@@ -39,8 +39,15 @@ export class Apns {
         notification.badge = 1;
         notification.sound = "ping.aiff";
         notification.alert = pushRequest.title;
-        notification.payload = pushRequest.content;
+        notification.payload = pushRequest.payload
+        notification.aps.category = pushRequest.category
         notification.topic = this.apnsConfig.bundleId;
+        let options:NotificationAlertOptions = {
+            body: pushRequest.content,
+            title: pushRequest.title,
+            subtitle: pushRequest.subtitle
+        }
+        notification.alert = options
 
         this.apnProvider.send(notification, recipients)
     }

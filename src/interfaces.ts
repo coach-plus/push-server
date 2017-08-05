@@ -7,7 +7,10 @@ export interface IDevice {
 export interface IPushRequest {
     devices: IDevice[]
     title: string
+    subtitle: string
     content: string
+    payload: any
+    category: string
 }
 
 export interface IMailRequest {
